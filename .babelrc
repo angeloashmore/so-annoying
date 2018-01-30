@@ -1,0 +1,10 @@
+{
+  "sourceMaps": true,
+  "env": {
+    "test": {
+      "plugins": [
+        "rewire"
+      ]
+    }
+  }
+}
