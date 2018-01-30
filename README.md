@@ -35,7 +35,7 @@ annoy('newsletter-signup-2018-02', () => {
 ### 3. That's it!
 
 By default, your annoyance will be run once until the cookie expires (14 days
-be default).
+by default).
 
 ## API
 
