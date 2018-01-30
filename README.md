@@ -39,4 +39,20 @@ by default).
 
 ## API
 
-Coming soon.
+### `annoy(key, annoyingFunction, [options])`
+
+Run an annoying function if the user is new.
+
+* key (string): unique key to track the annoyance
+* annoyingFunction (function): function to conditionally run (return value is
+  saved with the cookie)
+* options (object): includes all cookie options from RFC 6265
+  * shouldAnnoyIfCookiePresent (function): function to determine if the
+    annoying function should be run even if the cookie is present. The cookie
+    is passed as the first argument.
+  * path (string): cookie path, use `/` as the path if you want your cookie to be accessible on all pages
+  * expires (Date): absolute expiration date for the cookie
+  * maxAge (number): relative max age of the cookie from when the client receives it in second
+  * domain (string): domain for the cookie (sub.domain.com or .allsubdomains.com)
+  * secure (boolean): Is only accessible through HTTPS?
+  * httpOnly (boolean): Is only accessible by HTTP(S)?
