@@ -40,6 +40,8 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [babel()],
+    plugins: [
+      babel()
+    ],
   },
 ]
