@@ -1,6 +1,6 @@
 // Run a given function for each node found by a selector.
 const forNodesBySelector = (selector, f) =>
-  Array.from(document.querySelector(selector)).forEach(f)
+  Array.from(document.querySelectorAll(selector)).forEach(f)
 
 // Add a class name to each node.
 export const addClassNameBySelector = (selector, className) =>
