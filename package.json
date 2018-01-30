@@ -7,7 +7,7 @@
   "browser": "dist/so-annoying.umd.js",
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
-    "format": "prettier --write 'src/**/*.js'",
+    "format": "prettier --write 'src/**/*.js' 'README.md' 'rollup.config.js'",
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watch",

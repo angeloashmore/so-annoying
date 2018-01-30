@@ -6,7 +6,7 @@ import pkg from './package.json'
 export default [
   // Browser-friendly UMD build.
   {
-    input: './src/index.js',
+    input: 'src/index.js',
     output: {
       file: pkg.browser,
       format: 'umd',
@@ -17,9 +17,7 @@ export default [
       resolve(),
       commonjs({
         namedExports: {
-          'node_modules/universal-cookie/lib/index.js': [
-            'Cookies',
-          ],
+          'node_modules/universal-cookie/lib/index.js': ['Cookies'],
         },
       }),
       babel(),
@@ -28,10 +26,8 @@ export default [
 
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
-    input: './src/index.js',
-    external: [
-      'universal-cookie',
-    ],
+    input: 'src/index.js',
+    external: ['universal-cookie'],
     output: [
       {
         file: pkg.main,
