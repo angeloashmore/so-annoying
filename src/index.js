@@ -29,7 +29,7 @@ export const annoy = (
   // cookie with the provided options to mark the annoyance as ran.
   if (!existingCookie || shouldAnnoyIfCookiePresent(existingCookie)) {
     // Run the annoyance and save the return value.
-    const value = annoyance()
+    const value = annoyance(existingCookie)
 
     // Set the cookie to mark that the annoyance was ran.
     cookies.set(key, value, cookieOptions)
