@@ -16,10 +16,27 @@ npm install --save so-annoying
 
 ## Quick Guide
 
-### Import
+### 1. Import
 
-Import the modules.
+Import the module.
 
-### Good luck!
+```js
+import { annoy } from 'so-annoying'
+```
 
-You're on your own. (In other words, this part hasn't been written yet.)
+### 2. Create an annoyance
+
+```js
+annoy('newsletter-signup-2018-02', () => {
+  window.alert('Give us your email address.')
+})
+```
+
+### 3. That's it!
+
+By default, your annoyance will be run once until the cookie expires (14 days
+be default).
+
+## API
+
+Coming soon.
