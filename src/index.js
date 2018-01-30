@@ -25,8 +25,8 @@ export const annoy = (
   const existingCookie = cookies.get(key)
 
   // If the cookie does not exist OR the cookie does exists and
-  // options.shouldAnnoyIfCookiePresent returns true, run the annoyance. Set a
-  // cookie with the provided options to mark the annoyance as ran.
+  // options.shouldAnnoyIfCookiePresent returns true, run the annoyance and set
+  // a cookie with the provided options to mark the annoyance as ran.
   if (!existingCookie || shouldAnnoyIfCookiePresent(existingCookie)) {
     // Run the annoyance and save the return value.
     const value = annoyance(existingCookie)
