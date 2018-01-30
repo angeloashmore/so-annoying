@@ -1,7 +1,7 @@
 # So Annoying
 
 Create annoying behaviors for sweet conversions. This library makes it easy to
-implement conditionally activated pop-ups, call-outs, and triggers.
+implement conditionally activated pop-ups, call-outs, etc.
 
 ## Status
 
