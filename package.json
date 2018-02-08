@@ -29,16 +29,13 @@
     "universal-cookie": "^2.1.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-rewire": "^1.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-minify": "^0.2.0",
+    "@babel/core": "^7.0.0-beta.39",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.39",
+    "@babel/preset-env": "^7.0.0-beta.39",
     "jest": "^22.1.4",
     "prettier": "^1.10.2",
     "rollup": "^0.55.1",
-    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-babel": "^4.0.0-beta.0",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^3.0.2"
   }

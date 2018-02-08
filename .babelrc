@@ -1,27 +1,10 @@
 {
-  "sourceMaps": true,
   "presets": [
-    "env"
+    ["@babel/preset-env", {
+      "modules": false,
+    }],
   ],
-  "env": {
-    "test": {
-      "plugins": [
-        "rewire"
-      ]
-    },
-    "production": {
-      "presets": [
-        [
-          "env",
-          {
-            "modules": false
-          }
-        ],
-        "minify"
-      ],
-      "plugins": [
-        "external-helpers"
-      ]
-    }
-  }
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+  ],
 }

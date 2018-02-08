@@ -14,13 +14,9 @@ export default [
       sourcemap: true,
     },
     plugins: [
-      resolve(),
-      commonjs({
-        namedExports: {
-          'node_modules/universal-cookie/lib/index.js': ['Cookies'],
-        },
-      }),
       babel(),
+      resolve(),
+      commonjs(),
     ],
   },
 

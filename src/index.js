@@ -1,4 +1,4 @@
-import Cookies from 'universal-cookies'
+import Cookies from 'universal-cookie'
 
 const COOKIE_DEFAULT_KEY = '___so-annoying-global'
 const DEFAULT_OPTIONS = {
