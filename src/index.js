@@ -1,4 +1,4 @@
-import Cookies from 'universal-cookie'
+import * as Cookie from 'es-cookie'
 
 const COOKIE_DEFAULT_KEY = '___so-annoying-global'
 const DEFAULT_OPTIONS = {
@@ -8,8 +8,6 @@ const DEFAULT_OPTIONS = {
   // Never annoy if the cookie is present.
   shouldAnnoyIfCookiePresent: () => false,
 }
-
-const cookies = new Cookies()
 
 export const annoy = (
   key = COOKIE_DEFAULT_KEY,
@@ -22,7 +20,7 @@ export const annoy = (
   }
 
   // Fetch the cookie.
-  const existingCookie = cookies.get(key)
+  const existingCookie = Cookie.get(key)
 
   // If the cookie does not exist OR the cookie does exists and
   // options.shouldAnnoyIfCookiePresent returns true, run the annoyance and set
@@ -32,6 +30,6 @@ export const annoy = (
     const value = annoyance(existingCookie)
 
     // Set the cookie to mark that the annoyance was ran.
-    cookies.set(key, value, cookieOptions)
+    Cookie.set(key, value, cookieOptions)
   }
 }

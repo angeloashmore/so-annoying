@@ -16,14 +16,13 @@ export default [
     plugins: [
       babel(),
       resolve(),
-      commonjs(),
     ],
   },
 
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
     input: 'src/index.js',
-    external: ['universal-cookie'],
+    external: ['es-cookie'],
     output: [
       {
         file: pkg.main,
@@ -37,7 +36,7 @@ export default [
       },
     ],
     plugins: [
-      babel()
+      babel(),
     ],
   },
 ]
