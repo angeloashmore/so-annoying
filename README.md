@@ -27,8 +27,15 @@ import { annoy } from 'so-annoying'
 ### 2. Create an annoyance
 
 ```js
-annoy('newsletter-signup-2018-02', () => {
-  window.promp('Give us your email address.')
+annoy('newsletter-signup-2018-02', async () => {
+  const email = window.prompt('Give us your email address.')
+
+  // Perform some async action.
+  await sendEmailToServer(email)
+
+  // The return value is saved with the cookie. If the function doesn't return,
+  // the cookie is not set.
+  return email
 })
 ```
 
@@ -36,6 +43,34 @@ annoy('newsletter-signup-2018-02', () => {
 
 By default, your annoyance will be run once until the cookie expires (14 days
 by default).
+
+## Advanced Usage
+
+### Using the existing cookie value
+
+The existing cookie value is provided as the only argument to annoyance.
+
+```js
+// Example here...
+```
+
+The existing cookie value is also provided to the `shouldAnnoyIfCookiePresent`
+option. This allows you to conditionally run the annoyance even if the cookie
+is present.
+
+```js
+// Example here...
+```
+
+### Using a `Promise` (or `async`/`await`) in the annoyance
+
+The return value of the annoyance is used as the cookie value when it is set.
+If some type of async action needs to take place during the annoyance, you can
+utilize a `Promise` or `async`/`await` to control when the cookie is set.
+
+```js
+// Example here...
+```
 
 ## API
 
