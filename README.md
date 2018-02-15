@@ -28,7 +28,7 @@ import { annoy } from 'so-annoying'
 
 ```js
 annoy('newsletter-signup-2018-02', () => {
-  window.alert('Give us your email address.')
+  window.promp('Give us your email address.')
 })
 ```
 
@@ -39,13 +39,15 @@ by default).
 
 ## API
 
-### `annoy(key, annoyingFunction, [options])`
+### `annoy(key, annoyance, [options])`
 
 Run an annoying function if the user is new.
 
 * **key** (string): Unique key to track the annoyance
 * **annoyance** (function): Function to conditionally run. Return value
-  is saved with the cookie. Existing cookie is passed to the function.
+  is saved with the cookie. Existing cookie is passed to the function. If the
+  function returns a `Promise`, the cookie will not be set until the `Promise`
+  resolves.
 * **options** (object): Includes all cookie options from RFC 6265
   * **shouldAnnoyIfCookiePresent** (function): Function to determine if the
     annoying function should be run even if the cookie is present. The cookie
@@ -54,7 +56,7 @@ Run an annoying function if the user is new.
     to be accessible on all pages.
   * **expires** (Date): Absolute expiration date for the cookie.
   * **maxAge** (number): Relative max age of the cookie from when the client
-    receives it in second.
+    receives it in seconds.
   * **domain** (string): Domain for the cookie (sub.domain.com or
     .allsubdomains.com).
   * **secure** (boolean): Is only accessible through HTTPS?
