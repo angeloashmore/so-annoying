@@ -9,12 +9,7 @@ const DEFAULT_OPTIONS = {
   maxAge: 60 * 60 * 24 * 14,
 }
 
-export const annoy = (
-  key,
-  annoyance = () => {},
-  passedOptions = {},
-) => {
-  invariant(key, 'No key received.')
+export const annoy = async (key, annoyance = () => {}, passedOptions = {}) => {
   invariant(typeof key === 'string', 'key must be a string')
 
   const { shouldAnnoyIfCookiePresent, ...cookieOptions } = {
@@ -37,9 +32,9 @@ export const annoy = (
   // a cookie with the provided options to mark the annoyance as ran.
   if (!existingCookie || shouldAnnoyIfCookiePresent(existingCookie)) {
     // Run the annoyance and save the return value.
-    annoyance(existingCookie).then(value => {
-      // Set the cookie to mark that the annoyance was ran.
-      set(key, value, cookieOptions)
-    })
+    const value = await annoyance(existingCookie)
+
+    // Set the cookie to mark that the annoyance was ran.
+    set(key, value, cookieOptions)
   }
 }
