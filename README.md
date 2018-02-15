@@ -44,7 +44,7 @@ by default).
 Run an annoying function if the user is new.
 
 * **key** (string): Unique key to track the annoyance
-* **annoyingFunction** (function): Function to conditionally run. Return value
+* **annoyance** (function): Function to conditionally run. Return value
   is saved with the cookie. Existing cookie is passed to the function.
 * **options** (object): Includes all cookie options from RFC 6265
   * **shouldAnnoyIfCookiePresent** (function): Function to determine if the
