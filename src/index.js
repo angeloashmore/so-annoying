@@ -30,7 +30,7 @@ export const annoy = async (key, annoyance = () => {}, passedOptions = {}) => {
   // If the cookie does not exist OR the cookie does exists and
   // options.shouldAnnoyIfCookiePresent returns true, run the annoyance and set
   // a cookie with the provided options to mark the annoyance as ran.
-  if (!existingCookie || shouldAnnoyIfCookiePresent(existingCookie)) {
+  if (!existingCookie || await shouldAnnoyIfCookiePresent(existingCookie)) {
     // Run the annoyance and save the return value.
     const value = await annoyance(existingCookie)
 
