@@ -14,15 +14,18 @@ export default [
       sourcemap: true,
     },
     plugins: [
-      babel(),
+      babel({
+        exclude: 'node_modules/**',
+      }),
       resolve(),
+      commonjs(),
     ],
   },
 
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
     input: 'src/index.js',
-    external: ['es-cookie'],
+    external: ['es-cookie', 'invariant'],
     output: [
       {
         file: pkg.main,
@@ -36,7 +39,9 @@ export default [
       },
     ],
     plugins: [
-      babel(),
+      babel({
+        exclude: 'node_modules/**',
+      }),
     ],
   },
 ]
