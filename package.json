@@ -26,12 +26,14 @@
   "author": "Angelo Ashmore",
   "license": "ISC",
   "dependencies": {
-    "es-cookie": "^1.1.1"
+    "es-cookie": "^1.1.1",
+    "invariant": "^2.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.39",
     "@babel/preset-env": "^7.0.0-beta.39",
+    "babel-polyfill": "^6.26.0",
     "jest": "^22.1.4",
     "prettier": "^1.10.2",
     "rollup": "^0.55.1",
