@@ -46,6 +46,35 @@ by default).
 
 ## Advanced Usage
 
+### `options.shouldAnnoyIfCookiePresent`
+
+The `shouldAnnoyIfCookiePresent` option allows you to run the annoyance even if
+a cookie with the key is present. By default, this option always returns
+`false` (i.e. the annoyance should not be run if the cookie is present).
+
+If you want to conditionally run the annoyance, provide a function that returns
+a boolean. The function receives the existing cookie value set from the
+previous occurance.
+
+```js
+annoy(
+  'newsletter-signup-2018-02',
+  async existingEmail => {
+    const message = existingEmail
+      ? `Come back, ${existingEmail}!`
+      : 'Give us your email address.'
+    const email = window.prompt(message)
+
+    await sendEmailToServer(email)
+
+    return email
+  },
+  {
+    shouldAnnoyIfCookiePresent: async email => await isUserSubscribed(email),
+  },
+)
+```
+
 ### Using the existing cookie value
 
 The existing cookie value is provided as the only argument to annoyance.
@@ -62,7 +91,7 @@ is present.
 // Example here...
 ```
 
-### Using a `Promise` (or `async`/`await`) in the annoyance
+### Using `Promise` (or `async`/`await`)
 
 The return value of the annoyance is used as the cookie value when it is set.
 If some type of async action needs to take place during the annoyance, you can
@@ -86,7 +115,8 @@ Run an annoying function if the user is new.
 * **options** (object): Includes all cookie options from RFC 6265
   * **shouldAnnoyIfCookiePresent** (function): Function to determine if the
     annoying function should be run even if the cookie is present. The cookie
-    is passed as the first argument.
+    is passed as the first argument. If the function returns a `Promise`, the
+    annoyance is not run until the `Promise` resolves.
   * **path** (string): Cookie path, use `/` as the path if you want your cookie
     to be accessible on all pages.
   * **expires** (Date): Absolute expiration date for the cookie.
