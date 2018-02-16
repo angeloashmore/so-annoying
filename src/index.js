@@ -17,9 +17,9 @@ const DEFAULT_OPTIONS = {
  * @param {function(existingCookie: Object): any} annoyance - conditionally run
  *   function.
  * @param {Object} [options]
- * @param {function(existingCookie: Object): boolean}
- *    [options.shouldAnnoyIfCookiePresent] - function to determine if the
- *    annoyance should run even if the cookie exists.
+ * @param {function(existingCookie: Object): boolean} [options.shouldAnnoyIfCookiePresent]
+ *   - function to determine if the annoyance should run even if the cookie
+ *   exists.
  * @param {number} [options.maxAge] - when the cookie will be removed in
  *   seconds.
  * @param {number|Date} [options.expires=14] - when the cookie will be removed
