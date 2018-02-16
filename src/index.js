@@ -13,21 +13,24 @@ const DEFAULT_OPTIONS = {
  * Conditionally runs an arbitrary function based on the function's previous
  * execution's return value - if any. Utilizes a cookie to track the return
  * value.
- * @param {string} key - unique key used to identify the cookie.
- * @param {function(existingCookie: Object): any} annoyance - conditionally run
- *   function.
+ * @param {string} key
+ *   unique key used to identify the cookie.
+ * @param {function(existingCookie: Object): any} annoyance
+ *   conditionally run function.
  * @param {Object} [options]
  * @param {function(existingCookie: Object): boolean} [options.shouldAnnoyIfCookiePresent]
- *   - function to determine if the annoyance should run even if the cookie
+ *   function to determine if the annoyance should run even if the cookie
  *   exists.
- * @param {number} [options.maxAge] - when the cookie will be removed in
- *   seconds.
- * @param {number|Date} [options.expires=14] - when the cookie will be removed
- *   in days or explicit date.
- * @param {string} [options.path=/] - the path where the cookie is visible
- * @param {string} [options.domain] - the domain where the cookie is visible
- * @param {boolean} [options.secure] - indicator if the cookie transmission
- *   requires a secure protocol (HTTPS)
+ * @param {number} [options.maxAge]
+ *  when the cookie will be removed in seconds.
+ * @param {number|Date} [options.expires=14]
+ *   when the cookie will be removed in days or explicit date.
+ * @param {string} [options.path=/]
+ *   the path where the cookie is visible
+ * @param {string} [options.domain]
+ *   the domain where the cookie is visible
+ * @param {boolean} [options.secure]
+ *   indicator if the cookie transmission requires a secure protocol (HTTPS)
  */
 export const annoy = async (key, annoyance = () => {}, options = {}) => {
   const { shouldAnnoyIfCookiePresent, ...cookieOptions } = {
