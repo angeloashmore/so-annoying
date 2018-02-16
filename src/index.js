@@ -1,4 +1,4 @@
-import { set, get } from 'es-cookie'
+import { get, set } from 'es-cookie'
 import invariant from 'invariant'
 
 const DEFAULT_OPTIONS = {
@@ -6,16 +6,47 @@ const DEFAULT_OPTIONS = {
   shouldAnnoyIfCookiePresent: () => false,
 
   // Cookie will persist for at most 14 days.
-  maxAge: 60 * 60 * 24 * 14,
+  expires: 14,
 }
 
-export const annoy = async (key, annoyance = () => {}, passedOptions = {}) => {
-  invariant(typeof key === 'string', 'key must be a string')
-
+/**
+ * Conditionally runs an arbitrary function based on the function's previous
+ * execution's return value - if any. Utilizes a cookie to track the return
+ * value.
+ * @param {string} key - unique key used to identify the cookie.
+ * @param {function(existingCookie: Object): any} annoyance - conditionally run
+ *   function.
+ * @param {Object} [options]
+ * @param {function(existingCookie: Object): boolean}
+ *    [options.shouldAnnoyIfCookiePresent] - function to determine if the
+ *    annoyance should run even if the cookie exists.
+ * @param {number} [options.maxAge] - when the cookie will be removed in
+ *   seconds.
+ * @param {number|Date} [options.expires=14] - when the cookie will be removed
+ *   in days or explicit date.
+ * @param {string} [options.path=/] - the path where the cookie is visible
+ * @param {string} [options.domain] - the domain where the cookie is visible
+ * @param {boolean} [options.secure] - indicator if the cookie transmission
+ *   requires a secure protocol (HTTPS)
+ */
+export const annoy = async (key, annoyance = () => {}, options = {}) => {
   const { shouldAnnoyIfCookiePresent, ...cookieOptions } = {
     ...DEFAULT_OPTIONS,
-    ...passedOptions,
+    ...options,
   }
+
+  // Arguments validation.
+  invariant(typeof key === 'string', 'key must be a string')
+  invariant(typeof annoyance === 'function', 'annoyance must be a function')
+  invariant(typeof options === 'object', 'options must be an object')
+  invariant(
+    typeof shouldAnnoyIfCookiePresent === 'function',
+    'options.shouldAnnoyIfCookiePresent must be a function',
+  )
+  invariant(
+    ['undefined', 'number'].includes(typeof cookieOptions.maxAge),
+    'options.maxAge must be a number',
+  )
 
   // Set cookieOptions.expires using maxAge.
   if (cookieOptions.maxAge) {
@@ -30,7 +61,7 @@ export const annoy = async (key, annoyance = () => {}, passedOptions = {}) => {
   // If the cookie does not exist OR the cookie does exists and
   // options.shouldAnnoyIfCookiePresent returns true, run the annoyance and set
   // a cookie with the provided options to mark the annoyance as ran.
-  if (!existingCookie || await shouldAnnoyIfCookiePresent(existingCookie)) {
+  if (!existingCookie || (await shouldAnnoyIfCookiePresent(existingCookie))) {
     // Run the annoyance and save the return value.
     const value = await annoyance(existingCookie)
 
